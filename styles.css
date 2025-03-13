@@ -13,8 +13,8 @@ body {
     padding: 6px;
     justify-content: center;
     align-items: stretch;
-    max-width: 400px;
-    max-height: 800px;
+    border-radius: 8px;
+    border: black solid 1px;
 }
 
 .display {
@@ -39,4 +39,7 @@ button {
     width: 70px;
     height: 70px;
     margin: 4px;
+    border-radius: 8px;
+    border: white;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
 }
