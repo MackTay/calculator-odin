@@ -9,4 +9,16 @@ body {
     display: flex;
     flex-direction: column;
     margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.display {
+    background-color: lightgray;
+    width: 100px;
+    height: 15px;    
+}
+
+.row {
+    display: flex;
 }
