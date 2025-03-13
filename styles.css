@@ -10,7 +10,7 @@ body {
     background-color: salmon;
     flex-direction: column;
     margin: auto;
-    padding: 5px;
+    padding: 6px;
     justify-content: center;
     align-items: stretch;
     max-width: 400px;
@@ -18,20 +18,24 @@ body {
 }
 
 .display {
-    display: flex;
-    flex: auto;
+    align-self: center;
     background-color: lightgray;
-    width: auto;
+    width: 250px;
     height: 70px;
     border: solid black 1px;
+    margin: 4px;
 }
 
 .row {
     display: flex;
 }
 
+.btn0 {
+    width: 148px;
+    height: 70px;
+}
+
 button {
-    flex: auto;
     width: 70px;
     height: 70px;
     margin: 4px;
