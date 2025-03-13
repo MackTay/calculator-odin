@@ -25,6 +25,7 @@ body {
     height: 70px;
     border: solid black 1px;
     margin: 4px;
+    font-size: 60px;
 }
 
 .row {
@@ -43,4 +44,5 @@ button {
     border-radius: 8px;
     border: white;
     box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+    font-size: 40px;
 }
