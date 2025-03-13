@@ -7,18 +7,31 @@ body {
 
 .calc {
     display: flex;
+    background-color: salmon;
     flex-direction: column;
     margin: auto;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    max-width: 400px;
+    max-height: 800px;
 }
 
 .display {
+    display: flex;
+    flex: auto;
     background-color: lightgray;
-    width: 100px;
-    height: 15px;    
+    width: auto;
+    height: 70px;
+    border: solid black 1px;
 }
 
 .row {
     display: flex;
+}
+
+button {
+    flex: auto;
+    width: 70px;
+    height: 70px;
+    margin: 4px;
 }
