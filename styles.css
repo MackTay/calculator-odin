@@ -21,6 +21,7 @@ body {
 .display {
     align-self: center;
     text-align: right;
+    font-family: 'Courier New', Courier, monospace;
     background-color: lightgray;
     width: 250px;
     height: 70px;
