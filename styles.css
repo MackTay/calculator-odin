@@ -33,7 +33,7 @@ body {
     display: flex;
 }
 
-.btn0 {
+#zero {
     width: 148px;
     height: 70px;
 }
@@ -41,8 +41,9 @@ body {
 button {
     width: 70px;
     height: 70px;
-    margin: 4px;
+    margin: 3px;
     border-radius: 8px;
+    border: 1px solid black;
     box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
     font-size: 40px;
 }
