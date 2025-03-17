@@ -2,9 +2,36 @@
 
 const calc = document.querySelector(".calc");
 const display = document.querySelector('#display')
-const equationValues = [0,false]; // Stores 1 value and a possible operand
+ // Stores 1 value, a possible operand, and a negative check
+const equation = {
+    value: 0,
+    operand: false,
+    negativeCheck: false
+};
 let expectingNew = true; // Will be used to wipe display in case of numbers pressed
+let displayVal = display.textContent;
 
+function calculate() {
+    let total = equation.value;
+    let operator = equation.operand;
+    let val2 = displayVal;
+    val2 = !equation.negativeCheck ? +val2 : -val2;
+    expectingNew = true;
+    if (!operator) {
+        return total;
+    } else {
+        switch (operator) {
+            case 'multiply':
+                return total *= val2;
+            case 'divide':
+                return total /= val2;
+            case 'add':
+                return total += val2;
+            case 'subtract':
+                return total -= val2;
+        }
+    }
+}
 
 
 // Calculator aesthetics
