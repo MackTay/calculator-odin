@@ -1,7 +1,13 @@
 // calc.js
 
 const calc = document.querySelector(".calc");
+const display = document.querySelector('#display')
+const equationValues = [0,false]; // Stores 1 value and a possible operand
+let expectingNew = true; // Will be used to wipe display in case of numbers pressed
 
+
+
+// Calculator aesthetics
 calc.addEventListener('mousedown', (event) => {
     if (event.target.tagName === "BUTTON") {
         event.target.setAttribute("style", `
