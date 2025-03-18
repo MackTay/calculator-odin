@@ -76,6 +76,7 @@ function calculate(id) {
                 break;
     }
     }
+    Math.round(total * 100) / 100
     id === 'equals' ? equation.operand = false : equation.operand = id;
     total >= 0 ? display.textContent = ' ' + total : display.textContent = total.toString();
     equation.value = total;
@@ -141,7 +142,7 @@ percent.addEventListener('click', () => {
 
 // Number button handlers to interact with display and callback for non-zero buttons
 zero.addEventListener('click', () => {
-    if (display.textContent === ' 0') {
+    if (display.textContent === ' 0' || display.textContent.length > 6) {
         return;
     } else {
         if (expectingNew) {
