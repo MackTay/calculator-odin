@@ -33,10 +33,13 @@ const equation = {
 let expectingNew = true;
 
 // To be executed whenever an operand button is hit
-function storeVal() {
+function storeVal(id) {
     let val = display.textContent.substring(1);
     val = !equation.negativeCheck ? +val : -val;
-    negativeCheck = false;
+    equation.operand = id;
+    equation.value = val;
+    equation.negativeCheck = false;
+    expectingNew = true;
 }
 
 // To be executed upon hitting equals button OR any operand button if equation.operand is defined
@@ -46,10 +49,7 @@ function calculate() {
     let val2 = display.textContent.substring(1);
     val2 = !equation.negativeCheck ? +val2 : -val2;
     expectingNew = true;
-    if (!operator) {
-        return total;
-    } else {
-        switch (operator) {
+    switch (operator) {
             case 'multiply':
                 total *= val2;
                 break;
@@ -62,9 +62,45 @@ function calculate() {
             case 'subtract':
                 total -= val2;
                 break;
-        }
     }
 }
+
+// Operand button listeners
+multiply.addEventListener('click', (event) => {
+    let id = event.target.id;
+    if (!equation.operand) {
+        storeVal(id);
+    } else {
+        return;
+    }
+});
+
+divide.addEventListener('click', (event) => {
+    let id = event.target.id;
+    if (!equation.operand) {
+        storeVal(id);
+    } else {
+        return;
+    }
+});
+
+add.addEventListener('click', (event) => {
+    let id = event.target.id;
+    if (!equation.operand) {
+        storeVal(id);
+    } else {
+        return;
+    }
+});
+
+subtract.addEventListener('click', (event) => {
+    let id = event.target.id;
+    if (!equation.operand) {
+        storeVal(id);
+    } else {
+        return;
+    }
+});
 
 // Number button handlers to interact with display and callback for non-zero buttons
 zero.addEventListener('click', () => {
@@ -75,7 +111,6 @@ zero.addEventListener('click', () => {
     }
 });
 
-// WHEN STARTING WITH A NEGATIVE, THIS FUNCTION REMOVES THE NEGATIVE. FIX!!!
 function nonZero(number) {
     if (display.textContent.length > 6) {
         return;
@@ -108,11 +143,6 @@ plusMinus.addEventListener('click', () => {
         equation.negativeCheck = false;
         display.textContent = ' ' + display.textContent.substring(1);
     }
-});
-
-// Operand button listeners
-multiply.addEventListener('click', () => {
-    calculate(multiply);
 });
 
 // Calculator aesthetics
