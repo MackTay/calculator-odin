@@ -70,7 +70,9 @@ zero.addEventListener('click', () => {
 });
 
 function nonZero(number) {
-    if (expectingNew === true) {
+    if (display.textContent.length > 5) {
+        return;
+    } else if (expectingNew === true) {
         display.textContent = number;
         expectingNew = false;
     } else {
