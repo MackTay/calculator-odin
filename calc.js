@@ -32,12 +32,10 @@ const equation = {
 // Will be used to wipe display in case of numbers pressed
 let expectingNew = true;
 
-let displayVal = display.textContent;
-
 function calculate() {
     let total = equation.value;
     let operator = equation.operand;
-    let val2 = displayVal;
+    let val2 = display.textContent;
     val2 = !equation.negativeCheck ? +val2 : -val2;
     expectingNew = true;
     if (!operator) {
@@ -66,10 +64,10 @@ zero.addEventListener('click', () => {
 });
 
 function nonZero(number) {
-    if (display.textContent.length > 5) {
+    if (display.textContent.length > 6) {
         return;
     } else if (expectingNew === true) {
-        display.textContent = number;
+        display.textContent = ' ' + number;
         expectingNew = false;
     } else {
         display.textContent += number;
@@ -89,13 +87,17 @@ nine.addEventListener('click', () => nonZero('9'));
 plusMinus.addEventListener('click', () => {
     if (equation.negativeCheck === false) {
         equation.negativeCheck = true;
-        display.textContent = '-' + display.textContent;
+        display.textContent = '-' + display.textContent.substring(1);
     } else {
         equation.negativeCheck = false;
-        display.textContent = display.textContent.substring(1);
+        display.textContent = ' ' + display.textContent.substring(1);
     }
 });
 
+// Operand button listeners
+multiply.addEventListener('click', () => {
+    calculate(multiply);
+});
 
 // Calculator aesthetics
 calc.addEventListener('mousedown', (event) => {
