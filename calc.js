@@ -56,6 +56,7 @@ function calculate() {
     }
 }
 
+// Number button handlers to interact with display
 zero.addEventListener('click', () => {
     if (displayVal === '0') {
         return;
@@ -67,6 +68,26 @@ zero.addEventListener('click', () => {
         }
     }
 });
+
+function nonZero(number) {
+    if (expectingNew === true) {
+        display.textContent = number;
+        expectingNew = false;
+    } else {
+        display.textContent += number;
+    }
+}
+
+one.addEventListener('click', () => nonZero('1'));
+two.addEventListener('click', () => nonZero('2'));
+three.addEventListener('click', () => nonZero('3'));
+four.addEventListener('click', () => nonZero('4'));
+five.addEventListener('click', () => nonZero('5'));
+six.addEventListener('click', () => nonZero('6'));
+seven.addEventListener('click', () => nonZero('7'));
+eight.addEventListener('click', () => nonZero('8'));
+nine.addEventListener('click', () => nonZero('9'));
+
 
 // Calculator aesthetics
 calc.addEventListener('mousedown', (event) => {
