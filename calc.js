@@ -56,16 +56,12 @@ function calculate() {
     }
 }
 
-// Number button handlers to interact with display
+// Number button handlers to interact with display and callback for non-zero buttons
 zero.addEventListener('click', () => {
     if (displayVal === '0') {
         return;
     } else {
-        if (expectingNew === true) {
-            display.textContent = '0';
-        } else {
-            display.textContent += '0';
-        }
+        expectingNew === true ? display.textContent = '0' : display.textContent += '0';
     }
 });
 
@@ -89,6 +85,16 @@ six.addEventListener('click', () => nonZero('6'));
 seven.addEventListener('click', () => nonZero('7'));
 eight.addEventListener('click', () => nonZero('8'));
 nine.addEventListener('click', () => nonZero('9'));
+
+plusMinus.addEventListener('click', () => {
+    if (equation.negativeCheck === false) {
+        equation.negativeCheck = true;
+        display.textContent = '-' + display.textContent;
+    } else {
+        equation.negativeCheck = false;
+        display.textContent = display.textContent.substring(1);
+    }
+});
 
 
 // Calculator aesthetics
