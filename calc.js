@@ -56,6 +56,17 @@ function calculate() {
     }
 }
 
+zero.addEventListener('click', () => {
+    if (displayVal === '0') {
+        return;
+    } else {
+        if (expectingNew === true) {
+            display.textContent = '0';
+        } else {
+            display.textContent += '0';
+        }
+    }
+});
 
 // Calculator aesthetics
 calc.addEventListener('mousedown', (event) => {
