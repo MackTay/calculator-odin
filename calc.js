@@ -32,10 +32,18 @@ const equation = {
 // Will be used to wipe display in case of numbers pressed
 let expectingNew = true;
 
+// To be executed whenever an operand button is hit
+function storeVal() {
+    let val = display.textContent.substring(1);
+    val = !equation.negativeCheck ? +val : -val;
+    negativeCheck = false;
+}
+
+// To be executed upon hitting equals button OR any operand button if equation.operand is defined
 function calculate() {
     let total = equation.value;
     let operator = equation.operand;
-    let val2 = display.textContent;
+    let val2 = display.textContent.substring(1);
     val2 = !equation.negativeCheck ? +val2 : -val2;
     expectingNew = true;
     if (!operator) {
@@ -43,31 +51,39 @@ function calculate() {
     } else {
         switch (operator) {
             case 'multiply':
-                return total *= val2;
+                total *= val2;
+                break;
             case 'divide':
-                return total /= val2;
+                total /= val2;
+                break;
             case 'add':
-                return total += val2;
+                total += val2;
+                break;
             case 'subtract':
-                return total -= val2;
+                total -= val2;
+                break;
         }
     }
 }
 
 // Number button handlers to interact with display and callback for non-zero buttons
 zero.addEventListener('click', () => {
-    if (displayVal === '0') {
+    if (displayVal === ' 0') {
         return;
     } else {
-        expectingNew === true ? display.textContent = '0' : display.textContent += '0';
+        expectingNew === true ? display.textContent = ' 0' : display.textContent += '0';
     }
 });
 
+// WHEN STARTING WITH A NEGATIVE, THIS FUNCTION REMOVES THE NEGATIVE. FIX!!!
 function nonZero(number) {
     if (display.textContent.length > 6) {
         return;
-    } else if (expectingNew === true) {
+    } else if (expectingNew && !equation.negativeCheck) {
         display.textContent = ' ' + number;
+        expectingNew = false;
+    } else if (expectingNew && equation.negativeCheck){
+        display.textContent = '-' + number;
         expectingNew = false;
     } else {
         display.textContent += number;
