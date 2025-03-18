@@ -76,7 +76,7 @@ function calculate(id) {
                 break;
     }
     }
-    id === equals ? equation.operand = false : equation.operand = id;
+    id === 'equals' ? equation.operand = false : equation.operand = id;
     total >= 0 ? display.textContent = ' ' + total : display.textContent = total.toString();
     equation.value = total;
     expectingNew = true;
@@ -120,6 +120,15 @@ subtract.addEventListener('click', (event) => {
         calculate(id);
     }
 });
+
+equals.addEventListener('click', (event) => {
+    let id = event.target.id;
+    if (!equation.operand) {
+        return;
+    } else {
+        calculate(id);
+    }
+})
 
 // Number button handlers to interact with display and callback for non-zero buttons
 zero.addEventListener('click', () => {
