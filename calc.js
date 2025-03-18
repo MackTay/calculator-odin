@@ -142,7 +142,7 @@ percent.addEventListener('click', () => {
 
 // Number button handlers to interact with display and callback for non-zero buttons
 zero.addEventListener('click', () => {
-    if (display.textContent === ' 0' || display.textContent.length > 6) {
+    if (display.textContent === ' 0' || (display.textContent.length > 6 && !expectingNew)) {
         return;
     } else {
         if (expectingNew) {
@@ -155,7 +155,7 @@ zero.addEventListener('click', () => {
 });
 
 function nonZero(number) {
-    if (display.textContent.length > 6) {
+    if (display.textContent.length > 6 && !expectingNew) {
         return;
     } else if (expectingNew && !equation.negativeCheck) {
         display.textContent = ' ' + number;
