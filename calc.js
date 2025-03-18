@@ -43,19 +43,31 @@ function storeVal(id) {
 }
 
 // To be executed upon hitting equals button OR any operand button if equation.operand is defined
-function calculate() {
+function calculate(id) {
     let total = equation.value;
     let operator = equation.operand;
     let val2 = display.textContent.substring(1);
     val2 = !equation.negativeCheck ? +val2 : -val2;
-    expectingNew = true;
-    switch (operator) {
+    if (expectingNew) {
+        console.log(equation);
+        return;
+    } else {
+        switch (operator) {
             case 'multiply':
                 total *= val2;
                 break;
             case 'divide':
-                total /= val2;
-                break;
+                if (val2 == 0) {
+                    display.textContent = 'gtfo';
+                    equation.value = 0;
+                    expectingNew = true;
+                    equation.negativeCheck = false;
+                    equation.operand = false;
+                    return;
+                } else {
+                    total /= val2;
+                    break;
+                }
             case 'add':
                 total += val2;
                 break;
@@ -63,6 +75,13 @@ function calculate() {
                 total -= val2;
                 break;
     }
+    }
+    id === equals ? equation.operand = false : equation.operand = id;
+    total >= 0 ? display.textContent = ' ' + total : display.textContent = total.toString();
+    equation.value = total;
+    expectingNew = true;
+    equation.negativeCheck = false;
+    console.log(equation);
 }
 
 // Operand button listeners
@@ -71,7 +90,7 @@ multiply.addEventListener('click', (event) => {
     if (!equation.operand) {
         storeVal(id);
     } else {
-        return;
+        calculate(id);
     }
 });
 
@@ -80,7 +99,7 @@ divide.addEventListener('click', (event) => {
     if (!equation.operand) {
         storeVal(id);
     } else {
-        return;
+        calculate(id);
     }
 });
 
@@ -89,7 +108,7 @@ add.addEventListener('click', (event) => {
     if (!equation.operand) {
         storeVal(id);
     } else {
-        return;
+        calculate(id);
     }
 });
 
@@ -98,16 +117,21 @@ subtract.addEventListener('click', (event) => {
     if (!equation.operand) {
         storeVal(id);
     } else {
-        return;
+        calculate(id);
     }
 });
 
 // Number button handlers to interact with display and callback for non-zero buttons
 zero.addEventListener('click', () => {
-    if (displayVal === ' 0') {
+    if (display.textContent === ' 0') {
         return;
     } else {
-        expectingNew === true ? display.textContent = ' 0' : display.textContent += '0';
+        if (expectingNew) {
+            display.textContent = ' 0';
+            expectingNew = false;
+        } else {
+            display.textContent += '0';
+        }
     }
 });
 
