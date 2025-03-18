@@ -128,7 +128,16 @@ equals.addEventListener('click', (event) => {
     } else {
         calculate(id);
     }
-})
+});
+
+percent.addEventListener('click', () => {
+    let val = display.textContent.substring(1);
+    if (equation.negativeCheck) {
+        display.textContent = '-' + +val / 100;
+    } else {
+        display.textContent = ' ' + +val / 100;
+    }
+});
 
 // Number button handlers to interact with display and callback for non-zero buttons
 zero.addEventListener('click', () => {
