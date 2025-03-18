@@ -178,6 +178,14 @@ plusMinus.addEventListener('click', () => {
     }
 });
 
+clear.addEventListener('click', () => {
+    display.textContent = ' 0';
+    equation.value = 0;
+    equation.operand = false;
+    equation.negativeCheck = false;
+    expectingNew = true;
+});
+
 // Calculator aesthetics
 calc.addEventListener('mousedown', (event) => {
     if (event.target.tagName === 'BUTTON') {
