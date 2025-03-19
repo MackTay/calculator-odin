@@ -178,6 +178,21 @@ seven.addEventListener('click', () => nonZero('7'));
 eight.addEventListener('click', () => nonZero('8'));
 nine.addEventListener('click', () => nonZero('9'));
 
+decimal.addEventListener('click', () => {
+    if ((display.textContent.length > 6 && !expectingNew) ||
+        display.textContent.includes('.')) {
+        return;
+    } else if (expectingNew && !equation.negativeCheck) {
+        display.textContent = ' 0.';
+        expectingNew = false;
+    } else if (expectingNew && equation.negativeCheck){
+        display.textContent = '-0.';
+        expectingNew = false;
+    } else {
+        display.textContent += '.';
+    }
+});
+
 plusMinus.addEventListener('click', () => {
     if (equation.negativeCheck === false) {
         equation.negativeCheck = true;
