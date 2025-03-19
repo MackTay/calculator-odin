@@ -3,23 +3,10 @@
 const calc = document.querySelector('.calc');
 const display = document.querySelector('#display');
 const zero = document.querySelector('#zero');
-const one = document.querySelector('#one');
-const two = document.querySelector('#two');
-const three = document.querySelector('#three');
-const four = document.querySelector('#four');
-const five = document.querySelector('#five');
-const six = document.querySelector('#six');
-const seven = document.querySelector('#seven');
-const eight = document.querySelector('#eight');
-const nine = document.querySelector('#nine');
 const decimal = document.querySelector('#decimal');
 const clear = document.querySelector('#clear');
 const plusMinus = document.querySelector('#plusMinus');
 const percent = document.querySelector('#percent');
-const divide = document.querySelector('#divide');
-const multiply = document.querySelector('#multiply');
-const subtract = document.querySelector('#subtract');
-const add = document.querySelector('#add');
 const equals = document.querySelector('#equals');
 
 // Stores 1 value, a possible operand, and a negative check
@@ -32,7 +19,7 @@ const equation = {
 // Will be used to wipe display in case of numbers pressed
 let expectingNew = true;
 
-// To be executed whenever an operand button is hit
+// To be executed whenever an operand button is hit if equation.operand is false
 function storeVal(id) {
     let val = display.textContent.substring(1);
     val = !equation.negativeCheck ? +val : -val;
