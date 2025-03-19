@@ -18,7 +18,7 @@ body {
     box-shadow: 5px 5px 2px 1px rgb(0 0 0 / 20%);
 }
 
-.display {
+#display {
     align-self: center;
     text-align: right;
     font-family: 'Courier New', Courier, monospace;
