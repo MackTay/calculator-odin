@@ -76,13 +76,34 @@ function calculate(id) {
                 break;
     }
     }
-    Math.round(total * 100) / 100
+    total = +total.toFixed(2);
     id === 'equals' ? equation.operand = false : equation.operand = id;
     total >= 0 ? display.textContent = ' ' + total : display.textContent = total.toString();
     equation.value = total;
     expectingNew = true;
-    equation.negativeCheck = false;
-    console.log(equation);
+    equation.negativeCheck = false; // need to fix this. Can use the above total >= 0 ? statement
+    console.log('Calc:', equation);
+}
+
+function lengthLimiter() {
+    console.log('LL:', equation);
+    let total = equation.value;
+    if (display.textContent.length > 7 &&
+        display.textContent.includes('.')) {
+            total >= 0 ? display.textContent = ' ' + total.toFixed(2) :
+            display.textContent = total.toFixed(2).toString();
+    }
+    if (display.textContent.length > 7) {
+        total >= 0 ? display.textContent = ' ' + total.toExponential(1) :
+        display.textContent = total.toExponential(1);
+    }
+    if (display.textContent.length > 7) {
+        display.textContent = 'err';
+        equation.value = 0;
+        equation.operand = false;
+        equation.negativeCheck = false;
+        expectingNew = true;
+    }
 }
 
 // Operand button listeners
@@ -93,6 +114,7 @@ multiply.addEventListener('click', (event) => {
     } else {
         calculate(id);
     }
+    lengthLimiter();
 });
 
 divide.addEventListener('click', (event) => {
@@ -102,6 +124,7 @@ divide.addEventListener('click', (event) => {
     } else {
         calculate(id);
     }
+    lengthLimiter();
 });
 
 add.addEventListener('click', (event) => {
@@ -111,6 +134,7 @@ add.addEventListener('click', (event) => {
     } else {
         calculate(id);
     }
+    lengthLimiter();
 });
 
 subtract.addEventListener('click', (event) => {
@@ -120,6 +144,7 @@ subtract.addEventListener('click', (event) => {
     } else {
         calculate(id);
     }
+    lengthLimiter();
 });
 
 equals.addEventListener('click', (event) => {
@@ -129,6 +154,7 @@ equals.addEventListener('click', (event) => {
     } else {
         calculate(id);
     }
+    lengthLimiter();
 });
 
 percent.addEventListener('click', () => {
@@ -201,6 +227,7 @@ plusMinus.addEventListener('click', () => {
         equation.negativeCheck = false;
         display.textContent = ' ' + display.textContent.substring(1);
     }
+    lengthLimiter();
 });
 
 clear.addEventListener('click', () => {
