@@ -67,7 +67,7 @@ function calculate(id) {
     total >= 0 ? display.textContent = ' ' + total : display.textContent = total.toString();
     equation.value = total;
     expectingNew = true;
-    equation.negativeCheck = false; // need to fix this. Can use the above total >= 0 ? statement
+    total >= 0 ? equation.negativeCheck = false : equation.negativeCheck = true;
 }
 
 function lengthLimiter() {
@@ -155,9 +155,9 @@ function nonZero(number) {
 
 document.addEventListener('click', (event) => {
     console.log('click');
-    const validId = ['zero', 'one', 'two', 'three', 'four',
+    const validId = ['one', 'two', 'three', 'four',
         'five', 'six', 'seven', 'eight', 'nine'];
-    const numRef = ['0', '1', '2', '3', '4', '5', '6', '7',
+    const numRef = ['1', '2', '3', '4', '5', '6', '7',
         '8', '9'];
     if (validId.includes(event.target.id)) {
         let position = validId.indexOf(event.target.id);
