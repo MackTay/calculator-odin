@@ -18,8 +18,8 @@ const plusMinus = document.querySelector('#plusMinus');
 const percent = document.querySelector('#percent');
 const divide = document.querySelector('#divide');
 const multiply = document.querySelector('#multiply');
-const add = document.querySelector('#add');
 const subtract = document.querySelector('#subtract');
+const add = document.querySelector('#add');
 const equals = document.querySelector('#equals');
 
 // Stores 1 value, a possible operand, and a negative check
@@ -236,6 +236,22 @@ clear.addEventListener('click', () => {
     equation.operand = false;
     equation.negativeCheck = false;
     expectingNew = true;
+});
+
+document.addEventListener('keydown', (event) => {
+    console.log('key pressed');
+    const validKeys = ['0', '1', '2', '3', '4', '5', '6', '7',
+        '8', '9', '/', '*', '-', '+', '.', '%', 'Enter'];
+    const idRef = ['zero', 'one', 'two', 'three', 'four', 'five',
+        'six', 'seven', 'eight', 'nine', 'divide', 'multiply',
+        'subtract', 'add', 'decimal', 'percent', 'equals'];
+    if (validKeys.includes(event.key)) {
+        let position = validKeys.indexOf(event.key);
+        let id = idRef[position];
+        document.getElementById(id).click();
+    } else {
+        return;
+    }
 });
 
 // Calculator aesthetics
