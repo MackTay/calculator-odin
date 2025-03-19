@@ -49,7 +49,6 @@ function calculate(id) {
     let val2 = display.textContent.substring(1);
     val2 = !equation.negativeCheck ? +val2 : -val2;
     if (expectingNew) {
-        console.log(equation);
         return;
     } else {
         switch (operator) {
@@ -82,11 +81,9 @@ function calculate(id) {
     equation.value = total;
     expectingNew = true;
     equation.negativeCheck = false; // need to fix this. Can use the above total >= 0 ? statement
-    console.log('Calc:', equation);
 }
 
 function lengthLimiter() {
-    console.log('LL:', equation);
     let total = equation.value;
     if (display.textContent.length > 7 &&
         display.textContent.includes('.')) {
@@ -107,44 +104,19 @@ function lengthLimiter() {
 }
 
 // Operand button listeners
-multiply.addEventListener('click', (event) => {
-    let id = event.target.id;
-    if (!equation.operand) {
-        storeVal(id);
-    } else {
-        calculate(id);
-    }
-    lengthLimiter();
-});
-
-divide.addEventListener('click', (event) => {
-    let id = event.target.id;
-    if (!equation.operand) {
-        storeVal(id);
-    } else {
-        calculate(id);
-    }
-    lengthLimiter();
-});
-
-add.addEventListener('click', (event) => {
-    let id = event.target.id;
-    if (!equation.operand) {
-        storeVal(id);
-    } else {
-        calculate(id);
-    }
-    lengthLimiter();
-});
-
-subtract.addEventListener('click', (event) => {
-    let id = event.target.id;
-    if (!equation.operand) {
-        storeVal(id);
-    } else {
-        calculate(id);
-    }
-    lengthLimiter();
+document.addEventListener('click', (event) => {
+    if (event.target.id === 'divide' ||
+        event.target.id === 'multiply' ||
+        event.target.id === 'subtract' ||
+        event.target.id === 'add') {
+            let id = event.target.id;
+            if (!equation.operand) {
+                storeVal(id);
+            } else {
+                calculate(id);
+            }
+            lengthLimiter();
+        }
 });
 
 equals.addEventListener('click', (event) => {
@@ -194,15 +166,18 @@ function nonZero(number) {
     }
 }
 
-one.addEventListener('click', () => nonZero('1'));
-two.addEventListener('click', () => nonZero('2'));
-three.addEventListener('click', () => nonZero('3'));
-four.addEventListener('click', () => nonZero('4'));
-five.addEventListener('click', () => nonZero('5'));
-six.addEventListener('click', () => nonZero('6'));
-seven.addEventListener('click', () => nonZero('7'));
-eight.addEventListener('click', () => nonZero('8'));
-nine.addEventListener('click', () => nonZero('9'));
+document.addEventListener('click', (event) => {
+    console.log('click');
+    const validId = ['zero', 'one', 'two', 'three', 'four',
+        'five', 'six', 'seven', 'eight', 'nine'];
+    const numRef = ['0', '1', '2', '3', '4', '5', '6', '7',
+        '8', '9'];
+    if (validId.includes(event.target.id)) {
+        let position = validId.indexOf(event.target.id);
+        let num = numRef[position];
+        nonZero(num);
+    }
+});
 
 decimal.addEventListener('click', () => {
     if ((display.textContent.length > 6 && !expectingNew) ||
@@ -239,7 +214,6 @@ clear.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (event) => {
-    console.log('key pressed');
     const validKeys = ['0', '1', '2', '3', '4', '5', '6', '7',
         '8', '9', '/', '*', '-', '+', '.', '%', 'Enter'];
     const idRef = ['zero', 'one', 'two', 'three', 'four', 'five',
